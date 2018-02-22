@@ -1,7 +1,7 @@
 /**
  * @file Lógica principal de la página
- * @author Teo
- * @author Omar
+ * @author Teodoro Sergio Reverón Afonso
+ * @author Omar Hernández Reyes
  * @author Adrián Expósito Tofano
  */
 
