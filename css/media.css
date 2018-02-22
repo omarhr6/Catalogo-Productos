@@ -1,0 +1,17 @@
+/* Dispositivos pequeños (moviles en apaisado, 576px y mayor) */
+@media ( min-width: 576px ) { }
+
+/* Dispositivos medianos (tabletas, 768px y mayor) */
+@media ( min-width: 768px ) { }
+
+/* Dispositivos grandes (escritorio, 992px y mayor) */
+@media ( min-width: 992px ) { }
+
+/* Dispositivos extra grandes (escritorios grandes, 1200px y mayor) */
+@media ( min-width: 1200px ) { }
+
+/* Retrato */
+@media ( orientation: portrait ) { }
+
+/* Apaisado */
+@media ( orientation: landscape ) { }
