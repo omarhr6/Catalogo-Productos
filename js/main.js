@@ -41,7 +41,7 @@ var eBayAPI = {
             p.store       = 'ebay';
             p.picture     = results[i].galleryURL[0];
             p.description = results[i].subtitle;
-            p.link        = results[i];
+            p.link        = results[i].viewItemURL[0];
             // XXX Feo?
             switch (results[i].primaryCategory[0].categoryId) {
                 case 31387: p.type = 'watches'; break;
@@ -54,11 +54,26 @@ var eBayAPI = {
     }
 };
 
-/**
- * Función de inicio
- */
-function start() {
-    // TEMP Para probar
+
+function createCards() {
+    products.forEach(function(p) {
+        var container = $('.container');
+        container.append(
+            '<div class="card">' +
+            '<img src="' + p.picture + '"/>' +
+            '<div class="price">' + p.price + ' €</div>' +
+            '<div class="title">' + p.title + '</div>' +
+            '<div class="description">' + p.description + '</div>' +
+            '<div class="logo logo-' + p.store + '"></div>' +
+            '<a href="' + p.link + '"> Link </div>' +
+            '</div>');
+        var card = $('.card').last();
+    });
+}
+
+// TEMP Para probar
+function fetchData() {
+    // eBay
     var requestURL = eBayAPI.requestURLBase +
     'SECURITY-APPNAME=' +  eBayAPI.key +
     '&OPERATION-NAME=' + 'findItemsByCategory' +
@@ -75,10 +90,19 @@ function start() {
         dataType: 'JSONP',
         success: function(r) {
             eBayAPI.parseResponse(r);
+            createCards();
         },
         error: function() {},
         complete: function() {}
     });
+}
+
+
+/**
+ * Función de inicio
+ */
+function start() {
+    fetchData();
 }
 
 $(document).ready(start);
