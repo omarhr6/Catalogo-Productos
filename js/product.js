@@ -1,5 +1,5 @@
 /**
- * @file Lógica principal de la página
+ * @file Modelo para los productos
  * @author Teodoro Sergio Reverón Afonso
  * @author Omar Hernández Reyes
  * @author Adrián Expósito Tofano

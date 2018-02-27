@@ -1,5 +1,5 @@
 /**
- * @file Lógica principal de la página
+ * @file Interación con la API de eBay
  * @author Teodoro Sergio Reverón Afonso
  * @author Omar Hernández Reyes
  * @author Adrián Expósito Tofano
@@ -27,9 +27,9 @@ var eBayAPI = {
             p.title       = results[i].title;
             p.price       = results[i].sellingStatus[0].currentPrice[0].__value__;
             p.store       = 'ebay';
-            p.picture     = results[i].galleryURL[0];
+            p.picture     = results[i].galleryURL[0].replace('http:', 'https:');
             p.description = results[i].subtitle;
-            p.link        = results[i].viewItemURL[0];
+            p.link        = results[i].viewItemURL[0].replace('http:', 'https:');
             // XXX Feo?
             switch (results[i].primaryCategory[0].categoryId) {
                 case 31387: p.type = 'watches'; break;
