@@ -12,7 +12,7 @@
 
 var walmartAPI = {
     key: 'k2m3dzgfa2wndb62pchpbw6d',
-    requestURLBase: 'https://api.walmartlabs.com/v1/paginated/items?',
+    requestURLBase: 'http://api.walmartlabs.com/v1/search?',
     categoryId: {
         watches: '3891_3906',
         tablets: '3944_1078524_1078084',
@@ -44,9 +44,11 @@ var walmartAPI = {
     },
     fetchData: function() {
         var requestURL = this.requestURLBase +
-        // 'format=' + 'json' +
-        'category=' + this.categoryId.watches +
-        '&apiKey=' + walmartAPI.key;
+        'query=' + 'watch' +
+        '&category=' + this.categoryId.watches +
+        '&apiKey=' + walmartAPI.key +
+        '&sort=' + 'bestseller' + 
+        '&start=' + '30';
         console.log(requestURL);
         return $.ajax({
             url: requestURL,
@@ -54,13 +56,10 @@ var walmartAPI = {
             dataType: 'JSONP',
             context: this,
             success: function(r){
-                console.log(r);
                 this.lastResquest = [];
                 this.parseResponse(r);
             },
-            error: function(a, b, c) {
-                console.log(a, b, c);
-            },
+            error: function(a, b, c) {},
             complete: function() {}
         });
     }
