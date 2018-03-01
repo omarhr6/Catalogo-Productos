@@ -14,9 +14,9 @@ var eBayAPI = {
     key: 'AdrinExp-proyecto-PRD-451ca6568-33e7f5c2',
     requestURLBase : 'https://svcs.ebay.com/services/search/FindingService/v1?',
     categories: {
-        watches: 31387,
-        tablets: 171485,
-        cameras: 31388
+        watches: {name: 'watch', id: 31387},
+        tablets: {name: 'tablet', id: 171485},
+        cameras: {name: 'camera', id: 31388}
     },
     lastResquest: [],
     parseResponse: function(r) {
@@ -30,11 +30,10 @@ var eBayAPI = {
             p.picture     = results[i].galleryURL[0].replace('http:', 'https:');
             p.description = results[i].subtitle;
             p.link        = results[i].viewItemURL[0].replace('http:', 'https:');
-            // XXX Feo?
             switch (results[i].primaryCategory[0].categoryId) {
-                case 31387: p.type = 'watches'; break;
-                case 171485: p.type = 'tablets'; break;
-                case 31388: p.type = 'cameras'; break;
+                case 31387: p.type = 'watch'; break;
+                case 171485: p.type = 'tablet'; break;
+                case 31388: p.type = 'camera'; break;
                 default: p.type = results[i].primaryCategory[0].categoryName;
             }
             this.lastResquest.push(p);
@@ -47,7 +46,7 @@ var eBayAPI = {
         '&SERVICE-VERSION=' + '1.0.0' +
         '&RESPONSE-DATA-FORMAT=' + 'JSON' +
         '&REST-PAYLOAD' +
-        '&categoryId=' + this.categories.watches +
+        '&categoryId=' + this.categories.watches.id +
         '&paginationInput.entriesPerPage=' + '10' + // Máximo de 100
         '&GLOBAL-ID=' + 'EBAY-US' +
         '&siteid=' + '0';
