@@ -7,7 +7,7 @@
 
 'use strict';
 
-/* global $, eBayAPI */
+/* global $, eBayAPI, walmartAPI */
 
 
 // TEMP Para probar
@@ -35,10 +35,12 @@ function createCards() {
  */
 function start() {
     $.when(
-        eBayAPI.fetchData()
-    ).done(function(eBayAPICall) {
+        eBayAPI.fetchData(),
+        walmartAPI.fetchData()
+    ).done(function(eBayAPICall, walmartAPICall) {
         // call -> [ response, textStatus, jqXHR ]
         products = $.merge(products, eBayAPI.lastResquest);
+        products = $.merge(products, walmartAPI.lastResquest);
         createCards();
     }).fail(function() {
     }).always(function() {

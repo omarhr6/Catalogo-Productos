@@ -13,7 +13,7 @@
 var Product = function() {
     this.title = '';       //
     this.price = 0.00;     //
-    this.type = '';        // En minúscula -> watches || tablets || cameras
+    this.type = '';        // En minúscula -> watch || tablet || camera
     this.store = '';       // En minúscula -> ebay || walmart
     this.picture = '';     // Link (HTTPS para evitar problemas con GitHub)
     this.description = ''; //
