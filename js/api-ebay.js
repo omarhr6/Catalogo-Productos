@@ -21,20 +21,21 @@ var eBayAPI = {
     lastResquest: [],
     parseResponse: function(r) {
         // TODO Validación / comprobar tamaño arrays antes de acceder
+        console.log(r);
         var results = r.findItemsByCategoryResponse[0].searchResult[0].item;
         for (var i = 0; i < results.length; i++) {
             var p = new Product();
-            p.title       = results[i].title;
+            p.title       = results[i].title[0];
             p.price       = results[i].sellingStatus[0].currentPrice[0].__value__;
             p.store       = 'ebay';
             p.picture     = results[i].galleryURL[0].replace('http:', 'https:');
             p.description = results[i].subtitle;
             p.link        = results[i].viewItemURL[0].replace('http:', 'https:');
-            switch (results[i].primaryCategory[0].categoryId) {
+            switch (results[i].primaryCategory[0].categoryId[0]) {
                 case 31387: p.type = 'watch'; break;
                 case 171485: p.type = 'tablet'; break;
                 case 31388: p.type = 'camera'; break;
-                default: p.type = results[i].primaryCategory[0].categoryName;
+                default: p.type = results[i].primaryCategory[0].categoryName[0];
             }
             this.lastResquest.push(p);
         }
@@ -48,6 +49,13 @@ var eBayAPI = {
         '&REST-PAYLOAD' +
         '&categoryId=' + this.categories.watches.id +
         '&paginationInput.entriesPerPage=' + '10' + // Máximo de 100
+        '&itemFilter(0).name=' + 'HideDuplicateItems' +
+        '&itemFilter(0).value=' + 'true' +
+        '&itemFilter(1).name=' + 'ListingType' +
+        '&itemFilter(1).value(0)=' + 'AuctionWithBIN' +
+        '&itemFilter(1).value(1)=' + 'FixedPrice' +
+        '&itemFilter(1).value(2)=' + 'StoreInventory' +
+        '&sortOrder=' + 'WatchCountDecreaseSort' +
         '&GLOBAL-ID=' + 'EBAY-US' +
         '&siteid=' + '0';
         return $.ajax({
