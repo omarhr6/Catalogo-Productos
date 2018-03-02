@@ -19,7 +19,7 @@ var walmartAPI = {
         cameras: {name: 'camera', id: '3944_133277_1096663'}
     },
     lastResquest: [],
-    parseResponse: function(r) {
+    parseResponse: function(r, category) {
         // TODO Validación / comprobar tamaño arrays antes de acceder
         var results = r.items;
         for (var i = 0; i < results.length; i++){
@@ -30,13 +30,7 @@ var walmartAPI = {
             p.picture     = results[i].thumbnailImage.replace('http:', 'https:');
             p.description = results[i].shortDescription;
             p.link        = results[i].productUrl.replace('http:', 'https:');
-            // XXX Feo?
-            switch (r.categoryId) {
-                case '3891_3906': p.type = 'watch'; break;
-                case '3944_1078524_1078084': p.type = 'tablet'; break;
-                case '3944_133277_1096663': p.type = 'camera'; break;
-                // default: p.type = results[i].primaryCategory[0].categoryName;
-            }
+            p.type        = category;
             this.lastResquest.push(p);
         }
     },
@@ -54,7 +48,7 @@ var walmartAPI = {
             context: this,
             success: function(r){
                 this.lastResquest = [];
-                this.parseResponse(r);
+                this.parseResponse(r, 'watch');
             },
             error: function(a, b, c) {},
             complete: function() {}

@@ -19,7 +19,7 @@ var eBayAPI = {
         cameras: {name: 'camera', id: 31388}
     },
     lastResquest: [],
-    parseResponse: function(r) {
+    parseResponse: function(r, category) {
         // TODO Validación / comprobar tamaño arrays antes de acceder
         var results = r.findItemsByCategoryResponse[0].searchResult[0].item;
         for (var i = 0; i < results.length; i++) {
@@ -30,12 +30,7 @@ var eBayAPI = {
             p.picture     = results[i].galleryURL[0].replace('http:', 'https:');
             p.description = results[i].subtitle;
             p.link        = results[i].viewItemURL[0].replace('http:', 'https:');
-            switch (results[i].primaryCategory[0].categoryId[0]) {
-                case 31387: p.type = 'watch'; break;
-                case 171485: p.type = 'tablet'; break;
-                case 31388: p.type = 'camera'; break;
-                default: p.type = results[i].primaryCategory[0].categoryName[0];
-            }
+            p.type        = category;
             this.lastResquest.push(p);
         }
     },
@@ -64,7 +59,7 @@ var eBayAPI = {
             context: this,
             success: function(r) {
                 this.lastResquest = [];
-                this.parseResponse(r);
+                this.parseResponse(r, 'watch');
             },
             error: function() {},
             complete: function() {}
