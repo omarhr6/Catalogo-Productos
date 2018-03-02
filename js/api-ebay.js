@@ -21,7 +21,6 @@ var eBayAPI = {
     lastResquest: [],
     parseResponse: function(r) {
         // TODO Validación / comprobar tamaño arrays antes de acceder
-        console.log(r);
         var results = r.findItemsByCategoryResponse[0].searchResult[0].item;
         for (var i = 0; i < results.length; i++) {
             var p = new Product();

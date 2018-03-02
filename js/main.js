@@ -19,12 +19,12 @@ function createCards() {
         var container = $('.container');
         container.append(
             '<div class="card">' +
-            '<img src="' + p.picture + '"/>' +
-            '<div class="price">' + p.price + ' €</div>' +
-            '<div class="title">' + p.title + '</div>' +
-            '<div class="description">' + p.description + '</div>' +
-            '<div class="logo logo-' + p.store + '"></div>' +
-            '<a href="' + p.link + '"> Link </div>' +
+            '<img class="picture" src="' + p.picture + '"/>' +
+            '<div class="price">$' + p.price + '</div>' +
+            '<div class="title">' + p.title.slice(0, 20) + '</div>' +
+            // '<div class="description">' + p.description + '</div>' +
+            '<a href="' + p.link + '"><img class="logo logo-' + p.store +
+            '" src="../img/' + p.store + '-logo.svg"></img></a>' +
             '</div>');
         var card = $('.card').last();
     });
@@ -41,6 +41,9 @@ function start() {
         // call -> [ response, textStatus, jqXHR ]
         products = $.merge(products, eBayAPI.lastResquest);
         products = $.merge(products, walmartAPI.lastResquest);
+        // products = $.map(eBayAPI.lastResquest, function(v, i) {
+        //     return [v, walmartAPI.lastResquest[i]];
+        // });
         createCards();
     }).fail(function() {
     }).always(function() {
