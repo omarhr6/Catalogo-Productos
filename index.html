@@ -13,6 +13,8 @@
     <!-- Fuentes / iconos -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+    <!-- CSS Librerias -->
+    <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
     <!-- CSS -->
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <link href="css/media.css" rel="stylesheet" type="text/css" />
@@ -22,22 +24,27 @@
 <body>
 
     <div class="filter">
-        <span>Tienda</span>
-        <select class="store">
+        <label for="store">Tienda</label>
+        <select id="store">
             <option value="all">- Todas -</option>
             <option value="ebay">eBay</option>
             <option value="walmart">Walmart</option>
         </select>
-        <span>Categoría</span>
-        <select class="category">
+
+        <label for="category">Categoría</label>
+        <select id="category">
             <option value="all">- Todas -</option>
             <option value="watch">Relojes</option>
             <option value="tablet">Tabletas</option>
             <option value="camera">Cámaras</option>
         </select>
-        <span>Precio</span>
+
+        <label for="amount">Precio</label>
+        <input type="text" id="amount" readonly>
+        <div id="slider-range"></div>
 
     </div>
+    
     <div class="container"></div>
 
     <!-- JS Librerias -->
@@ -50,6 +57,7 @@
     <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
 
     <script type="text/javascript" src="js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="js/jquery-ui.js"></script>
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
     <!-- JS -->

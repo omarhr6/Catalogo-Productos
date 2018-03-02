@@ -20,6 +20,20 @@ div {
     border: 1px solid black;
     border-radius: 0.5em;
     padding: 1em;
+    background-color: white;
+}
+
+#amount {
+    border: 0;
+    color: #f6931f;
+    font-weight: bold;
+    display: inline-block;
+    width: 80px;
+}
+
+#slider-range {
+    display: inline-block;
+    width: 300px;
 }
 
 /* PRODUCTOS */
