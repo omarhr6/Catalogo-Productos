@@ -10,11 +10,8 @@
 /* global $, eBayAPI, walmartAPI */
 
 
-// TEMP Para probar
-var products = [];
-
 // TEMP Para probar, pasar a React
-function createCards() {
+function createCards(products) {
     products.forEach(function(p) {
         var container = $('.container');
         container.append(
@@ -31,56 +28,69 @@ function createCards() {
     });
 }
 
+function filterCards() {
+    var cards = $('.card');
+    var store = $('#store').val();
+    var category = $('#category').val();
+    var range = $('#slider-range').slider('values');
+    cards.hide();
+    cards.filter(function() {
+        var card = $(this);
+        var price = card.data('price');
+        return ((card.data('type')  === category || category === 'all') &&
+                (card.data('store') === store    || store    === 'all') &&
+                (price >= range[0] && price <= range[1]));
+    }).show();
+}
+
 /**
  * Función de inicio
  */
 function start() {
-    // Configuración de jQuery UI
+    // Configuración de jQuery UI //
+
+    // Configuración del slider para el filtrado de precios
     $('#slider-range').slider({
         range: true,
         min: 0,
         max: 1000,
-        values: [ 0, 1000 ],
-        slide: function( event, ui ) {
-            $('#amount').val('$' + ui.values[0] + ' - $' + ui.values[1]);
+        values: [0, 1000],
+        slide: function(event, ui) {
+            $('#amount').text('$' + ui.values[0] + ' - $' + ui.values[1]);
+        },
+        stop: function() {
+            filterCards();
+        }
+    });
+
+    // Actualización del texto con el rango de precio
+    $('#amount')
+        .text('$' + $('#slider-range')
+            .slider('values', 0 ) + ' - $' + $('#slider-range')
+                .slider('values', 1 ));
+
+    // Configuración del select para el filtrado por tienda
+    $('#store').selectmenu({
+        change: function() {
+            filterCards();
+        }
+    });
+
+    // Configuración del select para el filtrado por categoría
+    $('#category').selectmenu({
+        change: function() {
             var cards = $('.card');
-            cards.hide();
-            cards.filter(function() {
-                var price = $(this).data('price');
-                return (price >= ui.values[0] && price <= ui.values[1]);
-            }).show();
+            var category = $(this).val();
+            if (category === 'all') {
+                cards.show();
+            } else {
+                cards.hide();
+                cards.filter(function() {
+                    return $(this).data('type') === category;
+                }).show();
+            }
         }
     });
-    $('#amount').val('$' + $('#slider-range').slider( 'values', 0 ) +
-    ' - $' + $('#slider-range').slider('values', 1 ));
-
-    // Eventos de filtrado
-    $('#store').on('change', function() {
-        var cards = $('.card');
-        var store = $(this).val();
-        if (store === 'all') {
-            cards.show();
-        } else {
-            cards.hide();
-            cards.filter(function() {
-                return $(this).data('store') === store;
-            }).show();
-        }
-    });
-
-    $('#category').on('change', function() {
-        var cards = $('.card');
-        var category = $(this).val();
-        if (category === 'all') {
-            cards.show();
-        } else {
-            cards.hide();
-            cards.filter(function() {
-                return $(this).data('type') === category;
-            }).show();
-        }
-    });
-
 
     // TEMP Carga de datos
     $.when(
@@ -88,12 +98,13 @@ function start() {
         walmartAPI.fetchData()
     ).done(function(eBayAPICall, walmartAPICall) {
         // call -> [ response, textStatus, jqXHR ]
+        var products = [];
         products = $.merge(products, eBayAPI.lastResquest);
         products = $.merge(products, walmartAPI.lastResquest);
         // products = $.map(eBayAPI.lastResquest, function(v, i) {
         //     return [v, walmartAPI.lastResquest[i]];
         // });
-        createCards();
+        createCards(products);
     }).fail(function() {
     }).always(function() {
     });

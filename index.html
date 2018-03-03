@@ -23,28 +23,36 @@
 
 <body>
 
-    <div class="filter">
-        <label for="store">Tienda</label>
-        <select id="store">
-            <option value="all">- Todas -</option>
-            <option value="ebay">eBay</option>
-            <option value="walmart">Walmart</option>
-        </select>
-
-        <label for="category">Categoría</label>
-        <select id="category">
-            <option value="all">- Todas -</option>
-            <option value="watch">Relojes</option>
-            <option value="tablet">Tabletas</option>
-            <option value="camera">Cámaras</option>
-        </select>
-
-        <label for="amount">Precio</label>
-        <input type="text" id="amount" readonly>
-        <div id="slider-range"></div>
-
+    <div class="header">
+        <span class="main-title">Agregator</span>
+        <i title="Login" class="login material-icons">person</i>
     </div>
-    
+
+    <div class="filter">
+        <div>
+            <label for="store">Tienda</label>
+            <select id="store">
+                <option value="all">- Todas -</option>
+                <option value="ebay">eBay</option>
+                <option value="walmart">Walmart</option>
+            </select>
+        </div>
+        <div>
+            <label for="category">Categoría</label>
+            <select id="category">
+                <option value="all">- Todas -</option>
+                <option value="watch">Relojes</option>
+                <option value="tablet">Tabletas</option>
+                <option value="camera">Cámaras</option>
+            </select>
+        </div>
+        <div>
+            <label for="amount">Precio</label>
+            <div id="amount"></div>
+            <div id="slider-range"></div>
+        </div>
+    </div>
+
     <div class="container"></div>
 
     <!-- JS Librerias -->
