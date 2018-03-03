@@ -14,12 +14,16 @@ var eBayAPI = {
     key: 'AdrinExp-proyecto-PRD-451ca6568-33e7f5c2',
     requestURLBase : 'https://svcs.ebay.com/services/search/FindingService/v1?',
     categories: {
-        watches: {name: 'watch', id: 31387},
-        tablets: {name: 'tablet', id: 171485},
-        cameras: {name: 'camera', id: 31388}
+        watch:  31387,
+        tablet: 171485,
+        camera: 31388
     },
-    lastResquest: [],
-    parseResponse: function(r, category) {
+    last: {
+        data: [],
+        category: '',
+        page: 1
+    },
+    parseResponse: function(r) {
         // TODO Validación / comprobar tamaño arrays antes de acceder
         var results = r.findItemsByCategoryResponse[0].searchResult[0].item;
         for (var i = 0; i < results.length; i++) {
@@ -30,19 +34,20 @@ var eBayAPI = {
             p.picture     = results[i].galleryURL[0].replace('http:', 'https:');
             p.description = results[i].subtitle;
             p.link        = results[i].viewItemURL[0].replace('http:', 'https:');
-            p.type        = category;
-            this.lastResquest.push(p);
+            p.type        = this.last.category;
+            this.last.data.push(p);
         }
     },
-    fetchData: function() {
+    fetchData: function(category) {
         var requestURL = this.requestURLBase +
         'SECURITY-APPNAME=' +  eBayAPI.key +
         '&OPERATION-NAME=' + 'findItemsByCategory' +
         '&SERVICE-VERSION=' + '1.0.0' +
         '&RESPONSE-DATA-FORMAT=' + 'JSON' +
         '&REST-PAYLOAD' +
-        '&categoryId=' + this.categories.watches.id +
-        '&paginationInput.entriesPerPage=' + '10' + // Máximo de 100
+        '&categoryId=' + this.categories[category] +
+        '&paginationInput.entriesPerPage=' + '10' + // 1 - 100
+        '&paginationInput.pageNumber=' + this.last.page + // 1 - 100
         '&itemFilter(0).name=' + 'HideDuplicateItems' +
         '&itemFilter(0).value=' + 'true' +
         '&itemFilter(1).name=' + 'ListingType' +
@@ -58,11 +63,14 @@ var eBayAPI = {
             dataType: 'JSONP',
             context: this,
             success: function(r) {
-                this.lastResquest = [];
-                this.parseResponse(r, 'watch');
+                this.last.data = [];
+                this.last.category = category;
+                this.parseResponse(r);
             },
             error: function() {},
-            complete: function() {}
+            complete: function() {
+                this.last.page += 1;
+            }
         });
     }
 };

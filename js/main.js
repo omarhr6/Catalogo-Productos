@@ -92,21 +92,25 @@ function start() {
         }
     });
 
-    // TEMP Carga de datos
+    fetchData('watch');
+}
+
+
+function fetchData(category) {
+    $('.ajax-spinner').css('display', 'block');
     $.when(
-        eBayAPI.fetchData(),
-        walmartAPI.fetchData()
+        eBayAPI.fetchData(category),
+        walmartAPI.fetchData(category)
     ).done(function(eBayAPICall, walmartAPICall) {
         // call -> [ response, textStatus, jqXHR ]
         var products = [];
-        products = $.merge(products, eBayAPI.lastResquest);
-        products = $.merge(products, walmartAPI.lastResquest);
-        // products = $.map(eBayAPI.lastResquest, function(v, i) {
-        //     return [v, walmartAPI.lastResquest[i]];
-        // });
+        products = $.merge(products, eBayAPI.last.data);
+        products = $.merge(products, walmartAPI.last.data);
         createCards(products);
     }).fail(function() {
+        $('.ajax-error').css('display', 'block');
     }).always(function() {
+        $('.ajax-spinner').css('display', 'none');
     });
 }
 

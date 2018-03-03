@@ -111,7 +111,7 @@ Fuente (oscuro): rgba(0, 0, 0, 0.7);
 
 /* TARJETA DE PRODUCTO */
 .card {
-    width: 250px;
+    width: 18%;
     padding: 0.5rem;
     position: relative;
     background-color: rgb(255, 255, 255);
@@ -123,6 +123,7 @@ Fuente (oscuro): rgba(0, 0, 0, 0.7);
 .picture {
     width: 50%;
     display: inline-block;
+    border-radius: 10px;
 }
 
 .price {
@@ -148,4 +149,19 @@ Fuente (oscuro): rgba(0, 0, 0, 0.7);
 
 .logo-walmart {
     width: 10%;
+}
+
+
+/* SPINNER */
+.ajax-spinner {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    background-image: url('../img/spinner.gif');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 60px;
+    height: 60px;
+    transform: translate(-50%, -50%);
 }
