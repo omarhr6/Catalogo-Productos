@@ -21,7 +21,7 @@ function createCards(products) {
             '<div class="title">' + p.title.slice(0, 20) + '</div>' +
             '<div class="description">' + p.description + '</div>' +
             '<a href="' + p.link + '"><img class="logo logo-' + p.store +
-            '" src="/img/' + p.store + '-logo.svg"></img></a>' +
+            '" src="img/' + p.store + '-logo.svg"></img></a>' +
             '</div>');
         var card = $('.card').last();
         card.data(p);
