@@ -1,8 +1,31 @@
 /* Dispositivos pequeños (moviles en apaisado, 576px y mayor) */
-@media ( max-width: 576px ) { }
+@media ( max-width: 576px ) {
+    /* LOGIN & REGISTER */
+    header .logotipo{
+        width: 20em;
+    }
+
+    .container{
+        width: 100%;
+    }
+
+    .container-form {
+        padding: 1.5em;
+        width: 95%;
+    }
+
+    .container-form .container-separator hr{
+        width: 3em;
+    }
+}
 
 /* Dispositivos medianos (tabletas, 768px y mayor) */
-@media ( max-width: 768px ) { }
+@media ( max-width: 768px ) {
+    /* LOGIN & REGISTER */
+    .container-form .container-separator hr{
+        width: 4em;
+    }
+}
 
 /* Dispositivos grandes (escritorio, 992px y mayor) */
 @media ( max-width: 992px ) { }
