@@ -12,7 +12,7 @@
 
 var walmartAPI = {
     key: 'k2m3dzgfa2wndb62pchpbw6d',
-    requestURLBase: 'http://api.walmartlabs.com/v1/search?',
+    requestURLBase: 'https://api.walmartlabs.com/v1/search?',
     categories: {
         watch:  '3891_3906',
         tablet: '3944_1078524_1078084',
