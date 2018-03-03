@@ -1,11 +1,11 @@
 /* Dispositivos pequeños (moviles en apaisado, 576px y mayor) */
 @media ( max-width: 576px ) {
     /* LOGIN & REGISTER */
-    header .logotipo{
+    header .logotipo {
         width: 20em;
     }
 
-    .container{
+    .container {
         width: 100%;
     }
 
@@ -14,7 +14,7 @@
         width: 95%;
     }
 
-    .container-form .container-separator hr{
+    .container-form .container-separator hr {
         width: 3em;
     }
 }
@@ -22,7 +22,7 @@
 /* Dispositivos medianos (tabletas, 768px y mayor) */
 @media ( max-width: 768px ) {
     /* LOGIN & REGISTER */
-    .container-form .container-separator hr{
+    .container-form .container-separator hr {
         width: 4em;
     }
 }
