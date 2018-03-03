@@ -19,9 +19,16 @@ var eBayAPI = {
         camera: 31388
     },
     last: {
-        data: [],
-        category: '',
-        page: 1
+        data: [],      // Última response parseada
+        category: '',  // Última categoría pedida
+        page: {
+            // Página para el próximo request de dicha categoría
+            watch:  1,
+            tablet: 1,
+            camera: 1
+        },
+        // Elementos por página; No cambiar
+        itemsPerPage: 5
     },
     parseResponse: function(r) {
         // TODO Validación / comprobar tamaño arrays antes de acceder
@@ -46,14 +53,16 @@ var eBayAPI = {
         '&RESPONSE-DATA-FORMAT=' + 'JSON' +
         '&REST-PAYLOAD' +
         '&categoryId=' + this.categories[category] +
-        '&paginationInput.entriesPerPage=' + '10' + // 1 - 100
-        '&paginationInput.pageNumber=' + this.last.page + // 1 - 100
+        '&paginationInput.entriesPerPage=' + this.last.itemsPerPage + // 1 - 100
+        '&paginationInput.pageNumber=' + this.last.page[category] +   // 1 - 100
         '&itemFilter(0).name=' + 'HideDuplicateItems' +
         '&itemFilter(0).value=' + 'true' +
         '&itemFilter(1).name=' + 'ListingType' +
         '&itemFilter(1).value(0)=' + 'AuctionWithBIN' +
         '&itemFilter(1).value(1)=' + 'FixedPrice' +
         '&itemFilter(1).value(2)=' + 'StoreInventory' +
+        '&itemFilter(2).name=' + 'MaxPrice' +
+        '&itemFilter(2).value=' + '1000' +
         '&sortOrder=' + 'WatchCountDecreaseSort' +
         '&GLOBAL-ID=' + 'EBAY-US' +
         '&siteid=' + '0';
@@ -67,9 +76,11 @@ var eBayAPI = {
                 this.last.category = category;
                 this.parseResponse(r);
             },
-            error: function() {},
+            error: function(jqXHR, textStatus, errorThrown) {
+                console.error(jqXHR, textStatus, errorThrown);
+            },
             complete: function() {
-                this.last.page += 1;
+                this.last.page[category] += 1;
             }
         });
     }

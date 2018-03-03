@@ -53,9 +53,19 @@
             <div id="amount"></div>
             <div id="slider-range"></div>
         </div>
+        <div>
+            <label for="order">Orden</label>
+            <select id="order">
+                <option value="none">- Seleccionar -</option>
+                <option value="price-asc">Precio ascendente</option>
+                <option value="price-desc">Precio descendente</option>
+            </select>
+        </div>
     </div>
 
-    <div class="container"></div>
+    <div id="container"></div>
+
+    <div class="load-more middle-align"></div>
 
     <div class="ajax-spinner"></div>
 
@@ -76,6 +86,7 @@
     <script type="text/javascript" src="js/product.js"></script>
     <script type="text/javascript" src="js/api-walmart.js"></script>
     <script type="text/javascript" src="js/api-ebay.js"></script>
+    <script type="text/javascript" src="js/utils.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript" src="js/login.js"></script>
 

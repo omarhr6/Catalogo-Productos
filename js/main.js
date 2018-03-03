@@ -7,13 +7,13 @@
 
 'use strict';
 
-/* global $, eBayAPI, walmartAPI */
+/* global $, eBayAPI, walmartAPI, shuffle */
 
 
-// TEMP Para probar, pasar a React
+// Crea las tarjetas de productos según un array con elementos Product
 function createCards(products) {
     products.forEach(function(p) {
-        var container = $('.container');
+        var container = $('#container');
         container.append(
             '<div class="card">' +
             '<img class="picture" src="' + p.picture + '"/>' +
@@ -28,6 +28,7 @@ function createCards(products) {
     });
 }
 
+// Filtra las tarjetas (show/hide) segun los filtros seleccionados (precio, tienda, precio)
 function filterCards() {
     var cards = $('.card');
     var store = $('#store').val();
@@ -37,19 +38,60 @@ function filterCards() {
     cards.filter(function() {
         var card = $(this);
         var price = card.data('price');
-        console.log(
-            (card.data('type')  === category || category === 'all'),
-            (card.data('store') === store    || store    === 'all'),
-            (price >= range[0] && price <= range[1]));
         return ((card.data('type')  === category || category === 'all') &&
                 (card.data('store') === store    || store    === 'all') &&
                 (price >= range[0] && price <= range[1]));
     }).show();
 }
 
-/**
- * Función de inicio
- */
+// Ordena las tarjetas según el precio en el orden especificado (price-asc||price-desc)
+function sortCards(order) {
+    var cards = $('.card');
+    cards.sort(function(a, b){
+        var priceA = $(a).data('price');
+        var priceB = $(b).data('price');
+        if (order === 'price-asc') {
+            return priceA - priceB;
+        } else if (order === 'price-desc') {
+            return priceB - priceA;
+        }
+    });
+    cards.detach().appendTo($('#container'));
+}
+
+// Carga los productos
+function loadProducts(categories) {
+
+    if (categories && categories.length > 0) {
+        fetchData(categories.pop());
+    }
+
+    function fetchData(category) {
+        $('.ajax-spinner').css('display', 'block');
+        $.when(
+            eBayAPI.fetchData(category),
+            walmartAPI.fetchData(category)
+        ).done(function() {
+            // call -> [ response, textStatus, jqXHR ]
+            var products = [];
+            products = $.merge(products, eBayAPI.last.data);
+            products = $.merge(products, walmartAPI.last.data);
+            products = shuffle(products);
+            createCards(products);
+            sortCards();
+            filterCards();
+        }).fail(function() {
+            // $('.ajax-error').css('display', 'block');
+        }).always(function() {
+            $('.ajax-spinner').css('display', 'none');
+            if (categories.length > 0) {
+                fetchData(categories.pop());
+            }
+        });
+    }
+}
+
+// Función de inicio
 function start() {
     // Configuración de jQuery UI //
 
@@ -87,30 +129,32 @@ function start() {
         }
     });
 
+    // Configuración del select para el ordenado por categoría
+    $('#order').selectmenu({
+        change: function() {
+            var order = $('#order').val();
+            if (order !== 'none') {
+                sortCards(order);
+            }
+        }
+    });
+
+    // TEMP FIXME Botón para cargar más productos
     $('.load-more').on('click', function() {
-        fetchData('watch');
+        var category = $('#category').val();
+        var categories = [];
+        if (category === 'all') {
+            categories = ['watch', 'tablet', 'camera'];
+        } else {
+            for (var i = 0; i < 3; i++) {
+                categories.push(category);
+            }
+        }
+        loadProducts(categories);
     });
 
-    fetchData('watch');
-}
-
-
-function fetchData(category) {
-    $('.ajax-spinner').css('display', 'block');
-    $.when(
-        eBayAPI.fetchData(category),
-        walmartAPI.fetchData(category)
-    ).done(function(eBayAPICall, walmartAPICall) {
-        // call -> [ response, textStatus, jqXHR ]
-        var products = [];
-        products = $.merge(products, eBayAPI.last.data);
-        products = $.merge(products, walmartAPI.last.data);
-        createCards(products);
-    }).fail(function() {
-        // $('.ajax-error').css('display', 'block');
-    }).always(function() {
-        $('.ajax-spinner').css('display', 'none');
-    });
+    // Carga inicial de productos
+    loadProducts(['watch', 'tablet', 'camera']);
 }
 
 $(document).ready(start);
