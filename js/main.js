@@ -37,6 +37,10 @@ function filterCards() {
     cards.filter(function() {
         var card = $(this);
         var price = card.data('price');
+        console.log(
+            (card.data('type')  === category || category === 'all'),
+            (card.data('store') === store    || store    === 'all'),
+            (price >= range[0] && price <= range[1]));
         return ((card.data('type')  === category || category === 'all') &&
                 (card.data('store') === store    || store    === 'all') &&
                 (price >= range[0] && price <= range[1]));
@@ -79,17 +83,12 @@ function start() {
     // Configuración del select para el filtrado por categoría
     $('#category').selectmenu({
         change: function() {
-            var cards = $('.card');
-            var category = $(this).val();
-            if (category === 'all') {
-                cards.show();
-            } else {
-                cards.hide();
-                cards.filter(function() {
-                    return $(this).data('type') === category;
-                }).show();
-            }
+            filterCards();
         }
+    });
+
+    $('.load-more').on('click', function() {
+        fetchData('watch');
     });
 
     fetchData('watch');
@@ -108,7 +107,7 @@ function fetchData(category) {
         products = $.merge(products, walmartAPI.last.data);
         createCards(products);
     }).fail(function() {
-        $('.ajax-error').css('display', 'block');
+        // $('.ajax-error').css('display', 'block');
     }).always(function() {
         $('.ajax-spinner').css('display', 'none');
     });
