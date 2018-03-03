@@ -1,0 +1,66 @@
+/* ENCABEZADO */
+header{
+    text-align: center;
+}
+
+header .logotipo{
+    margin: 0 auto;
+    width: 30em;
+}
+
+/* CONTENEDOR */
+.container{
+    border: 0px;
+}
+
+/* CONTENEDOR FORMULARIO */
+.container-form {
+    border: 3px solid black;
+    background-color: rgb(230, 230, 234);
+    border-radius: 5px;
+    margin: 0 auto;
+    padding: 2em;
+    width: 30em;
+    font-size: 17px;
+}
+
+/* COMPONENTES FORMULARIO */
+.container-form input {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.container-form .buttons-form {
+    width:100%;
+    margin-bottom: 10px;
+}
+
+.container-form input[type=button] {
+    height: 40px;
+}
+
+.container-form .container-social {
+    margin: 0 auto;
+    width: 70%;
+    display: flex;
+    justify-content: space-around
+}
+
+.container-form .container-social img{
+    width: 2em;
+    height: 3em;
+    cursor: pointer;
+}
+
+.container-form .container-separator{
+    display: flex;
+    margin: 10px 0;
+}
+
+.container-form .container-separator span{
+    margin: 0 10px;
+}
+
+.container-form .container-separator hr{
+    width: 6em;
+}
