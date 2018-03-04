@@ -47,7 +47,7 @@ var eBayAPI = {
     },
     fetchData: function(category) {
         var requestURL = this.requestURLBase +
-        'SECURITY-APPNAME=' +  eBayAPI.key +
+        'SECURITY-APPNAME=' +  this.key +
         '&OPERATION-NAME=' + 'findItemsByCategory' +
         '&SERVICE-VERSION=' + '1.0.0' +
         '&RESPONSE-DATA-FORMAT=' + 'JSON' +
@@ -80,7 +80,6 @@ var eBayAPI = {
                 console.error(jqXHR, textStatus, errorThrown);
             },
             complete: function() {
-                this.last.page[category] += 1;
             }
         });
     }

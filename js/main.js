@@ -7,7 +7,7 @@
 
 'use strict';
 
-/* global $, eBayAPI, walmartAPI, shuffle */
+/* global $, forexAPI, eBayAPI, walmartAPI, shuffle */
 
 
 // Crea las tarjetas de productos según un array con elementos Product
@@ -17,7 +17,7 @@ function createCards(products) {
         container.append(
             '<div class="card">' +
             '<img class="picture" src="' + p.picture + '"/>' +
-            '<div class="price">$' + p.price + '</div>' +
+            '<div class="price">' + (p.price * forexAPI.exchange.rate).toFixed(2) + forexAPI.exchange.symbol + '</div>' +
             '<div class="title">' + p.title.slice(0, 20) + '</div>' +
             '<div class="description">' + p.description + '</div>' +
             '<a href="' + p.link + '"><img class="logo logo-' + p.store +
@@ -105,7 +105,11 @@ function start() {
         max: 1000,
         values: [0, 1000],
         slide: function(event, ui) {
-            $('#amount').text('$' + ui.values[0] + ' - $' + ui.values[1]);
+            $('#amount').text(
+                forexAPI.exchange.symbol +
+                ui.values[0] + ' - ' +
+                forexAPI.exchange.symbol +
+                ui.values[1]);
         },
         stop: function() {
             filterCards();
@@ -114,9 +118,9 @@ function start() {
 
     // Actualización del texto con el rango de precio
     $('#amount')
-        .text('$' + $('#slider-range')
-            .slider('values', 0 ) + ' - $' + $('#slider-range')
-                .slider('values', 1 ));
+        .text(
+            $('#slider-range').slider('values', 0 ) + forexAPI.exchange.symbol + 
+            ' - ' + $('#slider-range').slider('values', 1 ) + forexAPI.exchange.symbol);
 
     // Configuración del select para el filtrado por tienda
     $('#store').selectmenu({
@@ -160,4 +164,8 @@ function start() {
     loadProducts(['watch', 'tablet', 'camera']);
 }
 
-$(document).ready(start);
+$(document).ready( function() {
+    $.when(
+        forexAPI.fetchData()
+    ).always(start);
+});
