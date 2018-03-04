@@ -167,6 +167,13 @@ function loginFacebook(){
     FB.login(function(response){
         if (response.status === 'connected') {
             console.log('Estas conectado.');
+            FB.api('/me', function(response) {
+                var userName = response.first_name;
+                var photoUser = 'http://graph.facebook.com/' + response.id + '/picture?type=normal';
+                localStorage.setItem('nombre',userName);
+                localStorage.setItem('avatar',photoUser);
+                window.location.href = '../index.html';
+            });
         } else if (response.status === 'not_authorized') {
             console.log('No estas conectado.');
         } else {
