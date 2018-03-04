@@ -18,7 +18,7 @@ function createCards(products) {
             '<div class="card">' +
             '<img class="picture" src="' + p.picture + '"/>' +
             '<div class="price">' + (p.price * forexAPI.exchange.rate).toFixed(2) + forexAPI.exchange.symbol + '</div>' +
-            '<div class="title">' + p.title.slice(0, 20) + '</div>' +
+            '<div class="title">' + p.getShortTitle() + '</div>' +
             '<div class="description">' + p.description + '</div>' +
             '<a href="' + p.link + '"><img class="logo logo-' + p.store +
             '" src="img/' + p.store + '-logo.svg"></img></a>' +
