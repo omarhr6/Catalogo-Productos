@@ -45,8 +45,8 @@ function cargarInfoUsuario(){
         $('.user-info #user-name').text(getUserName);
         $('.user-info #user-photo').css('background-image', 'url('+getAvatar+')');
     } else {
-      $('.user-no-login').show();
-      $('.user-login').hide();
+        $('.user-no-login').show();
+        $('.user-login').hide();
     }
 
 }
