@@ -12,7 +12,7 @@
 
 $(function(){
     //Despues de logearse
-    afterLogin();
+    //afterLogin();
     //Esconder los contenedores que muestran el avatar y nombre de usuario
 
     cargarEventosLogin();
@@ -62,10 +62,23 @@ function loginGmail(){
     // Authentication Google
     var providerGoogle = new firebase.auth.GoogleAuthProvider();
     //Language Settings
-    // firebase.auth().languageCode = 'es';
     firebase.auth().useDeviceLanguage();
     // Register Popup
-    firebase.auth().signInWithPopup(providerGoogle);
+    firebase.auth().signInWithPopup(providerGoogle).then(function(result){
+        if (result.credential) {
+            //Esconder los botones de login y registro
+            // User Data
+            var user = result.user;
+            var userName = user.displayName;
+            var avatar = user.photoURL;
+            console.log(user, userName, avatar);
+            /* Supuesto caso de mostrar el avatar y nombre de usuario
+            $('#info-usuario .texto-menu').text(userName);
+            $('#info-usuario .avatar-usuario').css("background-image", "url('" + avatar + "')"); */
+        }
+    }).catch(function(error) {
+        console.log('Ha ocurrido un error:'+error.message);
+    });
     // Or register with redirect
     //firebase.auth().signInWithRedirect(providerGoogle
 }
@@ -95,33 +108,22 @@ function logoutGmail(){
 function loginFacebook(){
     //Authentication Facebook
     var providerFacebook = new firebase.auth.FacebookAuthProvider();
-
     //Language Settings
     // firebase.auth().languageCode = 'es';
     firebase.auth().useDeviceLanguage();
     // Register Popup
-    firebase.auth().signInWithPopup(providerFacebook);
-    // Or register with redirect
-    //firebase.auth().signInWithRedirect(providerFacebook);
-}
-
-function afterLogin(){
-    firebase.auth().getRedirectResult().then(function(r) {
-        if (r.credential) {
+    firebase.auth().signInWithPopup(providerFacebook).then(function(result){
+        if (result.credential) {
             //Esconder los botones de login y registro
-
             // User Data
-            var user = r.user;
+            var user = result.user;
             var userName = user.displayName;
             var avatar = user.photoURL;
             console.log(user, userName, avatar);
-
             /* Supuesto caso de mostrar el avatar y nombre de usuario
             $('#info-usuario .texto-menu').text(userName);
             $('#info-usuario .avatar-usuario').css("background-image", "url('" + avatar + "')"); */
-
         }
-
     }).catch(function(error) {
         console.log('Ha ocurrido un error:'+error.message);
     });
