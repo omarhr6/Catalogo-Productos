@@ -1,15 +1,15 @@
 /* ENCABEZADO */
-header{
+header {
     text-align: center;
 }
 
-header .logotipo{
+header .logotipo {
     margin: 0 auto;
     width: 30em;
 }
 
 /* CONTENEDOR */
-.container{
+.container {
     border: 0px;
 }
 
@@ -35,7 +35,7 @@ header .logotipo{
     margin-bottom: 10px;
 }
 
-.container-form input[type=button] {
+.container-form input[type=button] { 
     height: 40px;
 }
 
@@ -43,24 +43,30 @@ header .logotipo{
     margin: 0 auto;
     width: 70%;
     display: flex;
-    justify-content: space-around
+    justify-content: space-around;
 }
 
-.container-form .container-social img{
+.container-form .container-social img {
     width: 2em;
     height: 3em;
     cursor: pointer;
 }
 
-.container-form .container-separator{
+.container-form .container-separator {
     display: flex;
     margin: 10px 0;
 }
 
-.container-form .container-separator span{
+.container-form .container-separator span {
     margin: 0 10px;
 }
 
-.container-form .container-separator hr{
+.container-form .container-separator hr {
     width: 6em;
+}
+
+div.register-errors-1, div.register-errors-2, div.register-errors-3, div.register-errors-4, div.register-errors-5 {
+    display: none;
+    color: red;
+    font-size: 0.85em;
 }

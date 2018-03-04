@@ -37,33 +37,49 @@
                 <label for="first-name">
                     <span>First Name*</span>
                     <br/>
-                    <input type="text" name="first-name" required>
+                    <input type="text" name="first-name" class="first-name" required>
+                    <div class="register-errors-1">
+                        <br/>
+                        <span></span>
+                    </div>
                 </label>
                 <br/>
                 <br/>
                 <label for="last-name">
                     <span>Last Name*</span>
                     <br/>
-                    <input type="password" name="last-name" required>
+                    <input type="text" name="last-name" class="last-name" required>
+                    <div class="register-errors-2">
+                        <br/>
+                        <span></span>
+                    </div>
                 </label>
                 <br/>
                 <br/>
                 <label for="email">
                     <span>Email address*</span>
                     <br/>
-                    <input type="password" name="email" required>
+                    <input type="text" name="email" class="email" required>
+                    <div class="register-errors-3">
+                        <br/>
+                        <span></span>
+                    </div>
                 </label>
                 <br/>
                 <br/>
                 <label for="password">
                     <span>Password*</span>
                     <br/>
-                    <input type="password" name="password" required>
+                    <input type="password" name="password" class="password" required>
+                    <div class="register-errors-4">
+                        <br/>
+                        <span></span>
+                    </div>
                 </label>
                 <br/>
                 <br/>
                 <center>
-                    <input type="button" value="Create Account" class="buttons-form">
+                    <input id="btn-register" type="button" value="Create Account" class="buttons-form">
                 </center>
             </form>
 
@@ -74,8 +90,13 @@
             </div>
 
             <center>
-                <input id="btn-register" type="button" value="Sign In" class="buttons-form">
+                <input id="btn-login" type="button" value="Sign In" class="buttons-form">
+                <div class="register-errors-5">
+                    <br/>
+                    <span></span>
+                </div>
             </center>
+
         </div>
     </div>
 
@@ -86,17 +107,18 @@
     <!-- <script src="https://fb.me/react-dom-0.14.3.min.js"></script> -->
 
     <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
 
     <!-- JS -->
     <!-- <script type="text/javascript" src="../js/product.js"></script>
     <script type="text/javascript" src="../js/api-walmart.js"></script>
     <script type="text/javascript" src="../js/api-ebay.js"></script>
     <script type="text/javascript" src="../js/main.js"></script>-->
-    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script>
-    <script type="text/javascript" src="../js/login.js"></script>
+    <!-- <script type="text/javascript" src="../js/login.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-app.js"></script> -->
+    <!-- <script src="https://www.gstatic.com/firebasejs/4.6.2/firebase-auth.js"></script> -->
+    <script type="text/javascript" src="../js/register.js"></script>
 
 </body>
 
