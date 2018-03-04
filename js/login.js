@@ -11,6 +11,16 @@
 /* global firebase */
 
 $(function(){
+    //Configuracion del firebase
+    var config = {
+        apiKey: 'AIzaSyCWWHGvlwmLddjSZPOCClk9zAaGmRfMw2Y',
+        authDomain: 'catalogo-productos-47c96.firebaseapp.com',
+        databaseURL: 'https://catalogo-productos-47c96.firebaseio.com',
+        projectId: 'catalogo-productos-47c96',
+        storageBucket: '',
+        messagingSenderId: '732112312215'
+    };
+    firebase.initializeApp(config);
     //Despues de logearse
     //afterLogin();
     //Esconder los contenedores que muestran el avatar y nombre de usuario
@@ -18,16 +28,7 @@ $(function(){
     cargarEventosLogin();
 });
 
-//Configuracion del firebase
-var config = {
-    apiKey: 'AIzaSyCWWHGvlwmLddjSZPOCClk9zAaGmRfMw2Y',
-    authDomain: 'catalogo-productos-47c96.firebaseapp.com',
-    databaseURL: 'https://catalogo-productos-47c96.firebaseio.com',
-    projectId: 'catalogo-productos-47c96',
-    storageBucket: '',
-    messagingSenderId: '732112312215'
-};
-firebase.initializeApp(config);
+
 
 /**
  * Carga los eventos de los botones login y logout
