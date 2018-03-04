@@ -89,7 +89,7 @@ function loginGmail(){
  */
 function logoutGmail(){
     firebase.auth().signOut().then(function() {
-        alert("Se ha cerrado la sesion con exito.");
+        alert('Se ha cerrado la sesion con exito.');
         /* Esconder boton de cerrar sesion e informacion de usuario
         como el avatar y su nombre, y mostrar el boton de logearse
         y registrar de nuevo ejemplo supuesto
@@ -99,7 +99,7 @@ function logoutGmail(){
         $('#registro-usuario').show();
         */
     }).catch(function(error) {
-        alert("Ha ocurrido un error.");
+        alert('Ha ocurrido un error.');
     });
 }
 
