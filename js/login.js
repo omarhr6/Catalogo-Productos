@@ -10,6 +10,7 @@
 
 /* global firebase */
 
+//Init
 $(function(){
     //Configuracion del firebase
     var config = {
@@ -21,9 +22,6 @@ $(function(){
         messagingSenderId: '732112312215'
     };
     firebase.initializeApp(config);
-    //Despues de logearse
-    //afterLogin();
-    //Esconder los contenedores que muestran el avatar y nombre de usuario
 
     cargarEventosLogin();
 });
@@ -45,6 +43,10 @@ function cargarEventosLogin(){
 
     $('#btn-facebook').on('click', function(){
         loginFacebook();
+    });
+
+    $('#btn-logoutfacebook').on('click', function(){
+        logoutFacebook();
     });
 
     $('#btn-twitter').on('click', function(){
@@ -115,6 +117,7 @@ function loginFacebook(){
     // Register Popup
     firebase.auth().signInWithPopup(providerFacebook).then(function(result){
         if (result.credential) {
+            var token = result.credential.accessToken;
             //Esconder los botones de login y registro
             // User Data
             var user = result.user;
@@ -127,5 +130,16 @@ function loginFacebook(){
         }
     }).catch(function(error) {
         console.log('Ha ocurrido un error:'+error.message);
+    });
+}
+
+/**
+ * Para desconectar cuenta Facebook
+ */
+function logoutFacebook(){
+    firebase.auth().signOut().then(function() {
+    // Sign-out successful.
+    }).catch(function(error) {
+    // An error happened.
     });
 }
