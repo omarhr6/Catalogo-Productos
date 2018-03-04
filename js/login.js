@@ -82,10 +82,11 @@ function loginGmail(){
             var user = result.user;
             var userName = user.displayName;
             var avatar = user.photoURL;
+            localStorage.setItem('nombre',userName);
+            localStorage.setItem('avatar',avatar);
             console.log('Estas conectado con google.');
-            /* Supuesto caso de mostrar el avatar y nombre de usuario
-            $('#info-usuario .texto-menu').text(userName);
-            $('#info-usuario .avatar-usuario').css("background-image", "url('" + avatar + "')"); */
+            /* Supuesto caso de mostrar el avatar y nombre de usuario*/
+
         }
     }).catch(function(error) {
         console.log('Ha ocurrido un error:'+error.message);
@@ -118,6 +119,11 @@ function loginFacebook(){
             /* Supuesto caso de mostrar el avatar y nombre de usuario
             $('#info-usuario .texto-menu').text(userName);
             $('#info-usuario .avatar-usuario').css("background-image", "url('" + avatar + "')"); */
+            $('#user-no-login').hide();
+            $('#user-login').show();
+            $('#user-info span').empty();
+            $('#user-info span').text(userName);
+            $('');
         }
     }).catch(function(error) {
         console.log('Ha ocurrido un error:'+error.message);
