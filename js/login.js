@@ -10,6 +10,9 @@
 
 /* global firebase */
 
+//Variables globales
+var getUserName,getAvatar;
+
 //Init
 $(function(){
     //Configuracion del firebase
@@ -24,9 +27,29 @@ $(function(){
     firebase.initializeApp(config);
 
     cargarEventosLogin();
+
 });
 
+/**
+ * Cargar informacion usuario
+ */
+function cargarInfoUsuario(){
+    //Cargar la info del usuario logeado
+    if(window.localStorage.length>0){
+        getUserName = localStorage.getItem('nombre');
+        getAvatar = localStorage.getItem('avatar');
+        $('.user-no-login').hide();
+        $('.user-login').show();
+        $('.user-info #user-name').empty();
+        $('.user-info #user-photo').empty();
+        $('.user-info #user-name').text(getUserName);
+        $('.user-info #user-photo').css('background-image', 'url('+getAvatar+')');
+    } else {
+      $('.user-no-login').show();
+      $('.user-login').hide();
+    }
 
+}
 
 /**
  * Carga los eventos de los botones login y logout
@@ -36,34 +59,23 @@ function cargarEventosLogin(){
         loginGmail();
     });
 
-    //Para cerrar sesion
-    $('#btn-logoutgoogle').on('click', function(){
-        logout();
-    });
-
     $('#btn-facebook').on('click', function(){
         loginFacebook();
     });
 
-    $('#btn-logoutfacebook').on('click', function(){
-        logout();
-    });
 
     $('#btn-twitter').on('click', function(){
         loginTwitter();
-    });
-
-    $('#btn-logouttwitter').on('click', function(){
-        logout();
     });
 
     $('#btn-github').on('click', function(){
         loginGithub();
     });
 
-    $('#btn-logoutgithub').on('click', function(){
+    $('.user-log-out span').on('click',function() {
         logout();
     });
+
 }
 
 /**
@@ -84,6 +96,7 @@ function loginGmail(){
             var avatar = user.photoURL;
             localStorage.setItem('nombre',userName);
             localStorage.setItem('avatar',avatar);
+            window.location.href = '../index.html';
             console.log('Estas conectado con google.');
             /* Supuesto caso de mostrar el avatar y nombre de usuario*/
 
@@ -115,15 +128,10 @@ function loginFacebook(){
             var user = result.user;
             var userName = user.displayName;
             var avatar = user.photoURL;
+            localStorage.setItem('nombre',userName);
+            localStorage.setItem('avatar',avatar);
+            window.location.href = '../index.html';
             console.log('Estas conectado con facebook.');
-            /* Supuesto caso de mostrar el avatar y nombre de usuario
-            $('#info-usuario .texto-menu').text(userName);
-            $('#info-usuario .avatar-usuario').css("background-image", "url('" + avatar + "')"); */
-            $('#user-no-login').hide();
-            $('#user-login').show();
-            $('#user-info span').empty();
-            $('#user-info span').text(userName);
-            $('');
         }
     }).catch(function(error) {
         console.log('Ha ocurrido un error:'+error.message);
@@ -145,6 +153,9 @@ function loginTwitter(){
             var user = result.user;
             var userName = user.displayName;
             var avatar = user.photoURL;
+            localStorage.setItem('nombre',userName);
+            localStorage.setItem('avatar',avatar);
+            window.location.href = '../index.html';
             console.log('Estas conectado con Twitter');
         }
 
@@ -167,6 +178,9 @@ function loginGithub(){
             var user = result.user;
             var userName = user.providerData[0].displayName;
             var avatar = user.photoURL;
+            localStorage.setItem('nombre',userName);
+            localStorage.setItem('avatar',avatar);
+            window.location.href = '../index.html';
             console.log('Estas conectado con GitHub');
         }
 
@@ -181,15 +195,10 @@ function loginGithub(){
 function logout(){
     firebase.auth().signOut().then(function() {
         alert('Se ha cerrado la sesion con exito.');
-        /* Esconder boton de cerrar sesion e informacion de usuario
-        como el avatar y su nombre, y mostrar el boton de logearse
-        y registrar de nuevo ejemplo supuesto
-        $('#estado-usuario').text('');
-        $('#info-usuario').hide();
-        $('#logout-usuario').hide();
-        $('#registro-usuario').show();
-        */
+        $('.user-login').hide();
+        $('.user-no-login').show();
+        localStorage.clear();
     }).catch(function(error) {
-        alert('Ha ocurrido un error.');
+        alert('Ha ocurrido un error: '+error.message);
     });
 }

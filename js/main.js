@@ -119,7 +119,7 @@ function start() {
     // Actualización del texto con el rango de precio
     $('#amount')
         .text(
-            $('#slider-range').slider('values', 0 ) + forexAPI.exchange.symbol + 
+            $('#slider-range').slider('values', 0 ) + forexAPI.exchange.symbol +
             ' - ' + $('#slider-range').slider('values', 1 ) + forexAPI.exchange.symbol);
 
     // Configuración del select para el filtrado por tienda
@@ -162,6 +162,8 @@ function start() {
 
     // Carga inicial de productos
     loadProducts(['watch', 'tablet', 'camera']);
+    //Cargar info de usuarios desde login.js
+    window.cargarInfoUsuario();
 }
 
 $(document).ready( function() {
