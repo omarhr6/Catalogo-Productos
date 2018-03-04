@@ -1,5 +1,14 @@
 /* Dispositivos pequeños (moviles en apaisado, 576px y mayor) */
 @media ( max-width: 576px ) {
+    /* BARRA LOGIN */
+    .material-icons {
+        font-size: 18px;
+    }
+
+    .container-login {
+        font-size: 0.7em;
+    }
+
     /* LOGIN & REGISTER */
     header .logotipo {
         width: 20em;
@@ -21,11 +30,6 @@
 
 /* Dispositivos medianos (tabletas, 768px y mayor) */
 @media ( max-width: 768px ) {
-    /* BARRA FILTRADO */
-    .ui-widget {
-        font-size: 0.7em;
-    }
-
     /* LOGIN & REGISTER */
     .container-form .container-separator hr {
         width: 4em;
@@ -36,7 +40,23 @@
 @media ( max-width: 992px ) { }
 
 /* Dispositivos extra grandes (escritorios grandes, 1200px y mayor) */
-@media ( max-width: 1200px ) { }
+@media ( max-width: 1240px ) {
+    /* BARRA FILTRADO */ 
+    .filter {
+        flex-flow: row wrap;
+    }
+
+    #slider-range {
+        width: 150px;
+    }
+}
+
+@media ( max-width: 1580px ) { 
+    .ui-widget {
+        font-size: 0.7em;
+    }
+}
+
 
 /* Retrato */
 @media ( orientation: portrait ) { }
