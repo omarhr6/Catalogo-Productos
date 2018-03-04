@@ -25,9 +25,7 @@ $(function(){
         messagingSenderId: '732112312215'
     };
     firebase.initializeApp(config);
-
     cargarEventosLogin();
-
 });
 
 //Configuracion login de facebook
@@ -148,7 +146,7 @@ function loginFacebook(){
         if (response.status === 'connected') {
             console.log('Estas conectado.');
             FB.api('/me', function(response) {
-                var userName = response.first_name;
+                var userName = response.email;
                 var photoUser = 'http://graph.facebook.com/' + response.id + '/picture?type=normal';
                 localStorage.setItem('nombre',userName);
                 localStorage.setItem('avatar',photoUser);
