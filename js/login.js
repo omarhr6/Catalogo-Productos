@@ -76,6 +76,9 @@ function cargarEventosLogin(){
         logout();
     });
 
+    $('#btn-goregister').click(function() {
+        location.href = "register.html";
+    });
 }
 
 /**
