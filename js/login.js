@@ -82,7 +82,7 @@ function loginGmail(){
             var user = result.user;
             var userName = user.displayName;
             var avatar = user.photoURL;
-            console.log(user, userName, avatar);
+            console.log('Estas conectado con google.');
             /* Supuesto caso de mostrar el avatar y nombre de usuario
             $('#info-usuario .texto-menu').text(userName);
             $('#info-usuario .avatar-usuario').css("background-image", "url('" + avatar + "')"); */
@@ -114,7 +114,7 @@ function loginFacebook(){
             var user = result.user;
             var userName = user.displayName;
             var avatar = user.photoURL;
-            console.log(user, userName, avatar);
+            console.log('Estas conectado con facebook.');
             /* Supuesto caso de mostrar el avatar y nombre de usuario
             $('#info-usuario .texto-menu').text(userName);
             $('#info-usuario .avatar-usuario').css("background-image", "url('" + avatar + "')"); */
