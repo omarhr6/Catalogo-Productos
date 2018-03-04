@@ -106,10 +106,10 @@ function start() {
         values: [0, 1000],
         slide: function(event, ui) {
             $('#amount').text(
-                forexAPI.exchange.symbol +
-                ui.values[0] + ' - ' +
-                forexAPI.exchange.symbol +
-                ui.values[1]);
+                ui.values[0] +
+                forexAPI.exchange.symbol + ' - ' +
+                ui.values[1] +
+                forexAPI.exchange.symbol);
         },
         stop: function() {
             filterCards();
