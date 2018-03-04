@@ -57,6 +57,10 @@ Fuente (oscuro): rgba(0, 0, 0, 0.7);
     display: flex;
 }
 
+.user-info {
+    display: inline-flex;
+}
+
 .user-no-login {
     display: flex;
     justify-content: space-around;
@@ -79,10 +83,12 @@ Fuente (oscuro): rgba(0, 0, 0, 0.7);
 }
 
 .user-avatar {
-    border: 1px solid black;
-    width: 5px;
-    height: 5px;
+    width: 10px;
+    height: 7px;
     border-radius: 2px;
+    margin-left: 5px;
+    padding: 12px 11px;
+    background-size: cover;
 }
 
 .user-log-out {
