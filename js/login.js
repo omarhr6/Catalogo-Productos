@@ -38,7 +38,7 @@ function cargarEventosLogin(){
 
     //Para cerrar sesion
     $('#btn-logoutgoogle').on('click', function(){
-        logoutGmail();
+        logout();
     });
 
     $('#btn-facebook').on('click', function(){
@@ -46,15 +46,23 @@ function cargarEventosLogin(){
     });
 
     $('#btn-logoutfacebook').on('click', function(){
-        logoutFacebook();
+        logout();
     });
 
     $('#btn-twitter').on('click', function(){
-        //llamar funcion loginTwitter
+        loginTwitter();
+    });
+
+    $('#btn-logouttwitter').on('click', function(){
+        logout();
     });
 
     $('#btn-github').on('click', function(){
-        //llamar funcion loginGithub
+        loginGithub();
+    });
+
+    $('#btn-logoutgithub').on('click', function(){
+        logout();
     });
 }
 
@@ -86,24 +94,7 @@ function loginGmail(){
     //firebase.auth().signInWithRedirect(providerGoogle
 }
 
-/**
- * Cerrar sesion google
- */
-function logoutGmail(){
-    firebase.auth().signOut().then(function() {
-        alert('Se ha cerrado la sesion con exito.');
-        /* Esconder boton de cerrar sesion e informacion de usuario
-        como el avatar y su nombre, y mostrar el boton de logearse
-        y registrar de nuevo ejemplo supuesto
-        $('#estado-usuario').text('');
-        $('#info-usuario').hide();
-        $('#logout-usuario').hide();
-        $('#registro-usuario').show();
-        */
-    }).catch(function(error) {
-        alert('Ha ocurrido un error.');
-    });
-}
+
 
 /**
  * Logearse con la cuenta de facebook
@@ -133,13 +124,66 @@ function loginFacebook(){
     });
 }
 
+
 /**
- * Para desconectar cuenta Facebook
+ * Para logearse con Twitter
  */
-function logoutFacebook(){
-    firebase.auth().signOut().then(function() {
-    // Sign-out successful.
+function loginTwitter(){
+    var providerTwitter = new firebase.auth.TwitterAuthProvider();
+    firebase.auth().useDeviceLanguage();
+    firebase.auth().signInWithPopup(providerTwitter).then(function(result) {
+        if(result.credential){
+            var token = result.credential.accessToken;
+            var secret = result.credential.secret;
+            // The signed-in user info.
+            var user = result.user;
+            var userName = user.displayName;
+            var avatar = user.photoURL;
+            console.log('Estas conectado con Twitter');
+        }
+
     }).catch(function(error) {
-    // An error happened.
+        console.log('Algo ha pasado: '+error.message);
+    });
+}
+
+/**
+ * Para logearse con Github
+ */
+function loginGithub(){
+    var providerGithub = new firebase.auth.GithubAuthProvider();
+    firebase.auth().useDeviceLanguage();
+    firebase.auth().signInWithPopup(providerGithub).then(function(result) {
+        if(result.credential){
+            var token = result.credential.accessToken;
+            var secret = result.credential.secret;
+            // The signed-in user info.
+            var user = result.user;
+            var userName = user.providerData[0].displayName;
+            var avatar = user.photoURL;
+            console.log('Estas conectado con GitHub');
+        }
+
+    }).catch(function(error) {
+        console.log('Algo ha pasado: '+error.message);
+    });
+}
+
+/**
+ * Cerrar sesion desde cualquier cuenta
+ */
+function logout(){
+    firebase.auth().signOut().then(function() {
+        alert('Se ha cerrado la sesion con exito.');
+        /* Esconder boton de cerrar sesion e informacion de usuario
+        como el avatar y su nombre, y mostrar el boton de logearse
+        y registrar de nuevo ejemplo supuesto
+        $('#estado-usuario').text('');
+        $('#info-usuario').hide();
+        $('#logout-usuario').hide();
+        $('#registro-usuario').show();
+        */
+    }).catch(function(error) {
+        alert('Ha ocurrido un error.');
     });
 }
