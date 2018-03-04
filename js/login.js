@@ -107,7 +107,7 @@ function cargarEventosLogin(){
     });
 
     $('#btn-goregister').click(function() {
-        location.href = "register.html";
+        location.href = 'register.html';
     });
 }
 
