@@ -21,6 +21,11 @@
 
 /* Dispositivos medianos (tabletas, 768px y mayor) */
 @media ( max-width: 768px ) {
+    /* BARRA FILTRADO */
+    .ui-widget {
+        font-size: 0.7em;
+    }
+
     /* LOGIN & REGISTER */
     .container-form .container-separator hr {
         width: 4em;
