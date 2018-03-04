@@ -49,6 +49,10 @@ Fuente (oscuro): rgba(0, 0, 0, 0.7);
 }
 
 /* ENCABEZADO-LOGIN */
+.material-icons {
+    vertical-align: bottom;
+}
+
 .container-login {
     display: flex;
 }
