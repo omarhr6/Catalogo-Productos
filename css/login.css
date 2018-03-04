@@ -22,6 +22,7 @@ header .logotipo {
     padding: 2em;
     width: 30em;
     font-size: 17px;
+    margin-bottom: 8em;
 }
 
 /* COMPONENTES FORMULARIO */
@@ -50,6 +51,11 @@ header .logotipo {
     width: 2em;
     height: 3em;
     cursor: pointer;
+    transition: transform 150ms ease;
+}
+
+.container-form .container-social img:hover {
+    transform: scale(1.2);
 }
 
 .container-form .container-separator {
