@@ -1,22 +1,23 @@
 /* ENCABEZADO */
 header {
     text-align: center;
+    margin-bottom: 2em;
 }
 
-header .logotipo {
-    margin: 0 auto;
-    width: 30em;
+.brand-logo {
+    margin: 2em auto;
+    width: 15em;
 }
 
 /* CONTENEDOR */
 .container {
-    border: 0px;
+    border: 0;
 }
 
 /* CONTENEDOR FORMULARIO */
 .container-form {
     border: 3px solid black;
-    background-color: rgb(230, 230, 234);
+    background-color: rgb(250, 250, 250);
     border-radius: 5px;
     margin: 0 auto;
     padding: 2em;
@@ -32,11 +33,11 @@ header .logotipo {
 }
 
 .container-form .buttons-form {
-    width:100%;
+    width: 100%;
     margin-bottom: 10px;
 }
 
-.container-form input[type=button] { 
+.container-form input[type='button'] {
     height: 40px;
 }
 
