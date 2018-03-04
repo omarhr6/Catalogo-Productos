@@ -219,6 +219,7 @@ Fuente (oscuro): rgba(0, 0, 0, 0.7);
 
 /* FOOTER */
 .footer {
+    background-color: rgb(255, 255, 255);
     border-top: 1px solid black;
     margin-top: 4em;
 }
