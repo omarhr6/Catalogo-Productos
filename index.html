@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <!-- CSS Librerias -->
-    <link href="css/jquery-ui.css" rel="stylesheet" type="text/css"/>
+    <link href="css/jquery-ui.css" rel="stylesheet" type="text/css" />
     <!-- CSS -->
     <link href="css/main.css" rel="stylesheet" type="text/css" />
     <link href="css/media.css" rel="stylesheet" type="text/css" />
@@ -27,7 +27,31 @@
 
     <div class="header">
         <span class="main-title">Agregator</span>
-        <i title="Login" class="login material-icons">person</i>
+        <div class="container-login">
+            <div class="user-no-login">
+                <a href="portfolio/login.html" title="Iniciar sesión">
+                    <i title="Iniciar Sesión" class="login material-icons">&#xE879;</i>
+                    <span>Iniciar sesión</span>
+                </a>
+                <a href="portfolio/register.html" title="Registrarse">
+                    <i title="Registrarse" class="login material-icons">&#xE7FE;</i>
+                    <span>Registrarse</span>
+                </a>
+            </div>
+            <div class="user-login">
+                <div class="user-info">
+                    <i title="Login" class="login material-icons">person</i>
+                    <span>Omar Hernández</span>
+                    <span title="Imagen de perfil" class="user-avatar">Foto</span>
+                </div>
+                <div class="user-log-out">
+                    <a href="#" title="Cerrar sesión">
+                        <i title="Exit" class="login material-icons">&#xE879;</i>
+                        <span>Cerrar sesión</span>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
 
     <div class="filter">
@@ -68,6 +92,23 @@
     <div class="load-more middle-align"></div>
 
     <div class="ajax-spinner"></div>
+
+    <div class="footer">
+        <div class="footer-information">
+            <a href="https://www.ebayinc.com/">Acerca de eBay</a>
+            <a href="https://pages.ebay.es/help/sell/selling-basics.html">Cómo vender en eBay</a>
+            <a href="http://pages.ebay.es/comprar/index.html">La seguridad en eBay</a>
+            <a href="https://help.walmart.com/app/answers/detail/a_id/6">Acerca de Walmart</a>
+            <a href="https://marketplace.walmart.com/">Cómo vender en Walmart</a>
+            <a href="https://corporate.walmart.com/privacy-security">La seguridad en Walmart</a>
+        </div>
+        <div class="footer-copyright">
+            <span>Copyright <i class="copyright material-icons">&#xE90C;</i> 2017-2018 Comercio a martillazos Inc. Todos los derechos reservados. <a href="https://www.google.com/intl/es/policies/terms/">Condiciones de uso</a>, <a href="https://www.google.com/intl/es/policies/privacy/">Privacidad</a></span>
+        </div>
+        <div class="footer-authors">
+                <span>Autores: <a href="https://github.com/lainan">Adrián Expósito Tofano</a> // <a href="https://github.com/omarhr6">Omar Hernández Reyes</a> // <a href="https://github.com/td11">Teodoro Sergio Reverón Afonso</a></span>
+        </div>
+    </div>
 
     <!-- JS Librerias -->
     <script src="https://fb.me/react-0.14.3.js"></script>

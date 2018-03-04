@@ -93,6 +93,9 @@ function loadProducts(categories) {
 
 // Función de inicio
 function start() {
+    // Ocultamos elementos de login en caso de no estar logeado //
+    $('.user-login').hide();
+
     // Configuración de jQuery UI //
 
     // Configuración del slider para el filtrado de precios
