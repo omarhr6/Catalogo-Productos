@@ -1,3 +1,57 @@
+/* Retrato */
+@media ( orientation: portrait ) { }
+
+/* Apaisado */
+@media ( orientation: landscape ) { }
+
+@media ( max-width: 1580px ) { 
+    .ui-widget {
+        font-size: 0.7em;
+    }
+}
+
+/* Dispositivos extra grandes (escritorios grandes, 1200px y mayor) */
+@media ( max-width: 1240px ) {
+    /* BARRA FILTRADO */ 
+    .filter {
+        flex-flow: row wrap;
+    }
+
+    .filter div {
+        margin-bottom: 5px;
+    }
+
+    #slider-range {
+        width: 150px;
+    }
+
+    /* CARTAS DE PRODUCTO */
+    .card {
+        width: 23%;
+    }
+}
+
+/* Dispositivos grandes (escritorio, 992px y mayor) */
+@media ( max-width: 992px ) {
+    /* CARTAS DE PRODUCTO */
+    .card {
+        width: 30%;
+    } 
+}
+
+/* Dispositivos medianos (tabletas, 768px y mayor) */
+@media ( max-width: 768px ) {
+    /* CARTAS DE PRODUCTO */
+    .card {
+        width: 48%;
+    }
+
+    /* LOGIN & REGISTER */
+    .container-form .container-separator hr {
+        width: 4em;
+    }
+}
+
 /* Dispositivos pequeños (moviles en apaisado, 576px y mayor) */
 @media ( max-width: 576px ) {
     /* BARRA LOGIN */
@@ -7,6 +61,16 @@
 
     .container-login {
         font-size: 0.7em;
+    }
+
+    /* BARRA FILTRADO */ 
+    .filter {
+        text-align: center;
+    }
+
+    /* CARTAS DE PRODUCTO */
+    .card {
+        width: 100%;
     }
 
     /* LOGIN & REGISTER */
@@ -27,39 +91,3 @@
         width: 3em;
     }
 }
-
-/* Dispositivos medianos (tabletas, 768px y mayor) */
-@media ( max-width: 768px ) {
-    /* LOGIN & REGISTER */
-    .container-form .container-separator hr {
-        width: 4em;
-    }
-}
-
-/* Dispositivos grandes (escritorio, 992px y mayor) */
-@media ( max-width: 992px ) { }
-
-/* Dispositivos extra grandes (escritorios grandes, 1200px y mayor) */
-@media ( max-width: 1240px ) {
-    /* BARRA FILTRADO */ 
-    .filter {
-        flex-flow: row wrap;
-    }
-
-    #slider-range {
-        width: 150px;
-    }
-}
-
-@media ( max-width: 1580px ) { 
-    .ui-widget {
-        font-size: 0.7em;
-    }
-}
-
-
-/* Retrato */
-@media ( orientation: portrait ) { }
-
-/* Apaisado */
-@media ( orientation: landscape ) { }
