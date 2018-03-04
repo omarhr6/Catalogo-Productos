@@ -9,7 +9,6 @@
 
 /* eslint no-unused-vars: 0 */
 
-// REVIEW Sujeto a cambios
 var Product = function() {
     this.title =       '';   // Título
     this.price =       0.00; // Precio en dólares
@@ -18,4 +17,18 @@ var Product = function() {
     this.picture =     '';   // Link (HTTPS para evitar problemas con GitHub)
     this.description = '';   // Descripción
     this.link =        '';   // Link (HTTPS para evitar problemas con GitHub)
+    this.shortLength = 30;
+};
+
+Product.prototype.getShortTitle = function() {
+    var words = this.title.split(' ');
+    var shortTitle = '';
+    for (var i = 0; i < words.length; i++) {
+        if (shortTitle.length + words[i].length < this.shortLength) {
+            shortTitle += ' ' + words[i];
+        } else {
+            break;
+        }
+    }
+    return shortTitle;
 };
