@@ -8,7 +8,7 @@
 // Initialize Firebase
 'use strict';
 
-/* global firebase */
+/* global firebase FB*/
 
 //Variables globales
 var getUserName,getAvatar;
@@ -29,6 +29,36 @@ $(function(){
     cargarEventosLogin();
 
 });
+
+//Configuracion login de facebook
+window.fbAsyncInit = function() {
+    FB.init({
+        appId      : '2024303251155696',
+        cookie     : true,
+        xfbml      : true,
+        version    : 'v2.12'
+    });
+    FB.getLoginStatus(function(response) {
+        if (response.status === 'connected') {
+            console.log('Facebook, estas conectado.');
+        } else if (response.status === 'not_authorized') {
+            console.log('no estas conectado.Facebook.');
+        } else {
+            console.log('no estas conectado.Facebook.');
+        }
+        FB.AppEvents.logPageView();
+    });
+};
+
+(function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = 'https://connect.facebook.net/en_US/sdk.js';
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+
 
 /**
  * Cargar informacion usuario
@@ -118,14 +148,12 @@ function loginGmail(){
  */
 function loginFacebook(){
     //Authentication Facebook
-    var providerFacebook = new firebase.auth.FacebookAuthProvider();
-    //Language Settings
-    // firebase.auth().languageCode = 'es';
+    /*  var providerFacebook = new firebase.auth.FacebookAuthProvider();
+    providerFacebook.addScope('public_profile');
     firebase.auth().useDeviceLanguage();
-    // Register Popup
     firebase.auth().signInWithPopup(providerFacebook).then(function(result){
         if (result.credential) {
-            var token = result.credential.accessToken;
+            //var token = result.credential.accessToken;
             //Esconder los botones de login y registro
             // User Data
             var user = result.user;
@@ -138,7 +166,16 @@ function loginFacebook(){
         }
     }).catch(function(error) {
         console.log('Ha ocurrido un error:'+error.message);
-    });
+    }); */
+    FB.login(function(response){
+        if (response.status === 'connected') {
+            console.log('Estas conectado.');
+        } else if (response.status === 'not_authorized') {
+            console.log('No estas conectado.');
+        } else {
+            console.log('No estas conectado.');
+        }
+    },{scope:'email'});
 }
 
 
