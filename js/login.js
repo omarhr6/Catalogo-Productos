@@ -122,7 +122,6 @@ function loginGmail(){
     // Register Popup
     firebase.auth().signInWithPopup(providerGoogle).then(function(result){
         if (result.credential) {
-            //Esconder los botones de login y registro
             // User Data
             var user = result.user;
             var userName = user.displayName;
@@ -131,14 +130,12 @@ function loginGmail(){
             localStorage.setItem('avatar',avatar);
             window.location.href = '../index.html';
             console.log('Estas conectado con google.');
-            /* Supuesto caso de mostrar el avatar y nombre de usuario*/
 
         }
     }).catch(function(error) {
         console.log('Ha ocurrido un error:'+error.message);
     });
-    // Or register with redirect
-    //firebase.auth().signInWithRedirect(providerGoogle
+
 }
 
 
@@ -147,26 +144,6 @@ function loginGmail(){
  * Logearse con la cuenta de facebook
  */
 function loginFacebook(){
-    //Authentication Facebook
-    /*  var providerFacebook = new firebase.auth.FacebookAuthProvider();
-    providerFacebook.addScope('public_profile');
-    firebase.auth().useDeviceLanguage();
-    firebase.auth().signInWithPopup(providerFacebook).then(function(result){
-        if (result.credential) {
-            //var token = result.credential.accessToken;
-            //Esconder los botones de login y registro
-            // User Data
-            var user = result.user;
-            var userName = user.displayName;
-            var avatar = user.photoURL;
-            localStorage.setItem('nombre',userName);
-            localStorage.setItem('avatar',avatar);
-            window.location.href = '../index.html';
-            console.log('Estas conectado con facebook.');
-        }
-    }).catch(function(error) {
-        console.log('Ha ocurrido un error:'+error.message);
-    }); */
     FB.login(function(response){
         if (response.status === 'connected') {
             console.log('Estas conectado.');
